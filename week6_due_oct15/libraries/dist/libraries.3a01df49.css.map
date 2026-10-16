@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;;AAKA","sources":["style.css"],"sourcesContent":["html, body {\n  margin: 0;\n  padding: 0;\n}\n\n#container {\n  display: block;\n  top: 0;\n  width: 2880;\n  height: 1800\n}"],"names":[],"version":3,"file":"libraries.3a01df49.css.map","sourceRoot":"/__parcel_source_root/"}

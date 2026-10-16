@@ -1,0 +1,11 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  display: block;
+  top: 0;
+  width: 2880;
+  height: 1800
+}
