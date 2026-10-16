@@ -10,6 +10,8 @@ const wave = new WaveBackground('#container', {
   blur: 0,
   speed:     0.5,
 })
+wave.setColors(['#141163', '#78ffeb', '#ebc180', '#ee4a4a'])
+
 
 fetch("tides-hilo.json")
   .then(res => res.json())

@@ -207,11 +207,11 @@
       });
     }
   }
-})({"bhg5V":[function(require,module,exports,__globalThis) {
+})({"jZ4Yc":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 58633;
+var HMR_SERVER_PORT = 61099;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -725,6 +725,12 @@ const wave = new (0, _waveJs.WaveBackground)('#container', {
     blur: 0,
     speed: 0.5
 });
+wave.setColors([
+    '#141163',
+    '#78ffeb',
+    '#ebc180',
+    '#ee4a4a'
+]);
 fetch("tides-hilo.json").then((res)=>res.json()).then((json)=>console.log(json));
 function fetchJSONData() {
     fetch('./tides-hilo.json').then((response)=>{
@@ -1444,6 +1450,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["bhg5V","hgyV6"], "hgyV6", "parcelRequire4e27", {})
+},{}]},["jZ4Yc","hgyV6"], "hgyV6", "parcelRequire4e27", {})
 
 //# sourceMappingURL=libraries.5af3f2cb.js.map
