@@ -1,13 +1,24 @@
 let pMapper;
+let img;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   // create mapper object
   pMapper = createProjectionMapper(this);
   // loads calibration in the "maps" directory
+
+  quadLeft = pMapper.createQuadMap(400, 400); // quads should be proportionate to the physical object you are projecting onto
+  quadRight = pMapper.createQuadMap(400, 400);
+  quadTop = pMapper.createQuadMap(400,400);
+
   pMapper.load("maps/map.json");
-let surfacenum = pMapper.surfaces.length;
-console.log("Number of surfaces:" + surfacenum);
+  let surfacenum = pMapper.surfaces.length;
+  console.log("Number of surfaces: " + surfacenum);
+
+  //loadImage("assets/sponge.png", (loadedImg) => {
+    //img = loadedImg;
+  //});
+
 }
 
 function draw() {
@@ -17,8 +28,35 @@ function draw() {
     // displaySketch only passes pg to its callback, so wrap it to pass the index too
     surface.displaySketch((pg) => drawCoords(pg, i));
   });
-}
 
+  pMapper.surfaces.forEach((surface, i) => {
+    // displaySketch only passes pg to its callback, so wrap it to pass the index too
+    surface.displaySketch((pg) => dots(pg)); // this is the function that draws the dots on the surface
+  });
+  quadLeft.displaySketch((pg) => mySketch(pg))
+  
+  
+
+}
+let myCircle=[]
+function mySketch(pg) {//for left quad
+  //pg.background('#FFFA00');
+  randomSeed(0);
+  pg.push();
+  pg.fill('#a4a63b');
+  pg.noStroke();
+  for (let i = 0; i < 60; i++) {
+    pg.ellipse(random(width), random(height), random(10,80));
+  }
+  //image(img, 0, 0);
+  pg.circle(mouseX,mouseY,50);
+  if(mouseIsPressed){
+    myCircle.push([mouseX,mouseY])
+  }
+  //Plan to draw and how to trace it
+
+
+}
 function keyPressed() {
   switch (key) {
     case 'c':
@@ -45,9 +83,9 @@ function drawCoords(pg, mapIndex) {
   pg.push();
   // one color per surface, wrapping around if there are more surfaces than colors
   let colors = [
-    color(255, 0, 0),
-    color(0, 255, 0),
-    color(0, 0, 255),
+    color('#FFFA00'),
+    color('#FFFA00'),
+    color('#FFFA00'),
     color(255, 255, 0),
     color(255, 0, 255),
     color(0, 255, 255)
@@ -63,4 +101,22 @@ function drawCoords(pg, mapIndex) {
   pg.fill(255);
   pg.ellipse(mouseX, mouseY, 50);
   pg.pop();
+}
+
+function mouseClicked() {
+  circle(mouseX, mouseY, 50);
+}
+
+function dots(pg){
+  randomSeed(0);
+  pg.clear();
+  pg.push();
+  pg.background('#FFFA00')
+  pg.fill('#c0cd0c');
+  pg.noStroke();
+  for (let i = 0; i < 60; i++) {
+    pg.ellipse(random(width), random(height), random(10,80));
+  }
+  pg.pop();
+
 }
