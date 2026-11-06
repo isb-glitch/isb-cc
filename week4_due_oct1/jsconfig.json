@@ -5,6 +5,10 @@
   "include": [
     "*.js",
     "**/*.js",
+<<<<<<< HEAD
     "/Users/isabellechuduong/.vscode/extensions/samplavigne.p5-vscode-1.2.16/p5types/global.d.ts"
+=======
+    "/Users/nemo2.0/.vscode/extensions/samplavigne.p5-vscode-1.2.16/p5types/global.d.ts"
+>>>>>>> 8ed282bb7430de096fb54e575e18ed68915d8c38
   ]
 }

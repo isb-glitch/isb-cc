@@ -1,11 +1,15 @@
 let pMapper;
+<<<<<<< HEAD
 let img;
+=======
+>>>>>>> 8ed282bb7430de096fb54e575e18ed68915d8c38
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   // create mapper object
   pMapper = createProjectionMapper(this);
   // loads calibration in the "maps" directory
+<<<<<<< HEAD
 
   quadLeft = pMapper.createQuadMap(400, 400); // quads should be proportionate to the physical object you are projecting onto
   quadRight = pMapper.createQuadMap(400, 400);
@@ -18,6 +22,9 @@ function setup() {
   //loadImage("assets/sponge.png", (loadedImg) => {
     //img = loadedImg;
   //});
+=======
+  pMapper.load("maps/map.json");
+>>>>>>> 8ed282bb7430de096fb54e575e18ed68915d8c38
 
 }
 
@@ -28,6 +35,7 @@ function draw() {
     // displaySketch only passes pg to its callback, so wrap it to pass the index too
     surface.displaySketch((pg) => drawCoords(pg, i));
   });
+<<<<<<< HEAD
 
   pMapper.surfaces.forEach((surface, i) => {
     // displaySketch only passes pg to its callback, so wrap it to pass the index too
@@ -57,6 +65,10 @@ function mySketch(pg) {//for left quad
 
 
 }
+=======
+}
+
+>>>>>>> 8ed282bb7430de096fb54e575e18ed68915d8c38
 function keyPressed() {
   switch (key) {
     case 'c':
@@ -83,9 +95,15 @@ function drawCoords(pg, mapIndex) {
   pg.push();
   // one color per surface, wrapping around if there are more surfaces than colors
   let colors = [
+<<<<<<< HEAD
     color('#FFFA00'),
     color('#FFFA00'),
     color('#FFFA00'),
+=======
+    color(255, 0, 0),
+    color(0, 255, 0),
+    color(0, 0, 255),
+>>>>>>> 8ed282bb7430de096fb54e575e18ed68915d8c38
     color(255, 255, 0),
     color(255, 0, 255),
     color(0, 255, 255)
@@ -101,6 +119,7 @@ function drawCoords(pg, mapIndex) {
   pg.fill(255);
   pg.ellipse(mouseX, mouseY, 50);
   pg.pop();
+<<<<<<< HEAD
 }
 
 function mouseClicked() {
@@ -119,4 +138,6 @@ function dots(pg){
   }
   pg.pop();
 
+=======
+>>>>>>> 8ed282bb7430de096fb54e575e18ed68915d8c38
 }
