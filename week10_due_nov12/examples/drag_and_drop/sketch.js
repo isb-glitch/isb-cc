@@ -33,7 +33,7 @@ async function gotFile(file) {
 
   // a dropped file is a p5.File: look in the console to see everything inside it
   console.log(file);
-  fileInfo = file.name + '\ntype: ' + file.type + '   size: ' + round(file.size / 1024) + ' KB');
+  fileInfo = file.name + '\ntype: ' + file.type + '   size: ' + round(file.size / 1024) + ' KB';
   // file.file is the browser's original File object.
   // createObjectURL gives it a temporary URL, so we can load it
   // like any other image or sound, e.g. loadImage('cat.png')
@@ -79,7 +79,12 @@ function draw() {
   // highlight the border while a file is dragged over the canvas
   noFill();
   stroke(hovering ? color(80, 160, 255) : 80);
-  strokeWeight(hovering ? 8 : 2);
+  if(hovering){
+    strokeWeight(8);
+  } else {
+    strokeWeight(2);
+  }
+  //strokeWeight(hovering ? 8 : 2);
   rect(0, 0, width, height);
 
   // what p5 told us about the file
