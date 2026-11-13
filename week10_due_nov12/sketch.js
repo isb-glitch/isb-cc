@@ -1,65 +1,92 @@
-let sounds = [null,null,null,null]
-let names = [' synth', 'crunch', 'drums', 'scratch']
-let keys = ['a', 's', 'd', 'f'];
 
-async function setup() {
-  createCanvas(windowWidth, windowHeight);
-  colorMode(HSB);
-  textAlign(CENTER,CENTER);
-  textSize(20);
-  noStroke();
+// MY SOUND KEYBOARD - Week 10
+// A / S / D / F = play sounds
+// SPACE = pause or resume
+// Only one sound plays at a time
 
-  bg = await loadImage('bg.jpg');
-sounds[0] = await loadSound('1.738820__mariannadeoliveira__swell-with-light-piano.wav');
-sounds[1] = await loadSound('2.crunchy lick.wav');
-sounds[2] = await loadSound('3.low tempo drum.wav');
-sounds[3] = await loadSound('4.610676__liftpizzas__scratch-4x.wav');
+let scratch;
+let beat;
+let lick;
+let synth;
+
+let currentSound = null;
+let activeKey = '';
+
+function preload() {
+  scratch = loadSound('610676__liftpizzas__scratch-4x.wav');
+  beat = loadSound('low tempo drum.wav');
+  lick = loadSound('crunchy lick.wav');
+  synth = loadSound('738820__mariannadeoliveira__swell-with-light-piano.wav');
 }
 
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  textAlign(CENTER, CENTER);
+}
 
 function draw() {
-  background(220);
- 
-  let keyWidth = width / sounds.length;
-  for (let i = 0; i < sounds.length; i++) {
-    let x = i * keyWidth;
-    let y = keyWidth *1.5;
-    let hues = [55, 195, 330, 25];
-    if (sounds[i].isPlaying()){
-      y = y -10;
-      fill(hues[i], 35, 100);
-    } else {
-      fill(hues[i], 70, 95);
+  background('#3a071c');
+
+  fill(255);
+  noStroke();
+  textSize(24);
+  text('elevator music', width / 2, 50);
+
+  textSize(18);
+  fill(175);
+  text('press (to) play', width / 2, 75);
+
+  drawKey('a', 'scratch', 55, '#e8ff9c');
+  drawKey('s', 'beat', 155, '#411c54');
+  drawKey('d', 'lick', 255, '#b33535');
+  drawKey('f', 'synth', 355, '#95c3f8be');
+}
+
+
+function keyPressed() {
+  userStartAudio();
+
+  // SPACE pauses or resumes
+  if (keyCode === 32) {
+    if (currentSound) {
+
+      if (currentSound.isPlaying()) {
+        currentSound.pause();
+      } else if (currentSound.isPaused()) {
+        currentSound.play();
+      }
     }
 
-    rect(x+6, y, keyWidth - 12, keyWidth * 2,20);
-  
-    fill(0,0,100);
-    text(keys[i], x + keyWidth / 2, y + keyWidth* 0.7);
-    textSize(12);
-    text(names[i], x + keyWidth / 2, y + keyWidth * 1.4);
-    textSize(20);
+    return false;
+  }
+
+ 
+  if (key === 'a' || key === 'A') {
+    playSound(scratch, 'a');
+  }
+
+  if (key === 's' || key === 'S') {
+    playSound(beat, 's');
+  }
+
+  if (key === 'd' || key === 'D') {
+    playSound(lick, 'd');
+  }
+
+  if (key === 'f' || key === 'F') {
+    playSound(synth, 'f');
   }
 }
 
-function keyPressed() {
+// Stop previous sound and play new sound
+function playSound(newSound, letter) {
 
-  userStartAudio();
-  if (keyIsDown('a')) {
-    if (!sounds[0].isPlaying()) {
-      sounds[0].play();
-    }
-  } else if (keyIsDown('s')) {
-    if (!sounds[1].isPlaying()) {
-      sounds[1].play();
-    }
-  } else if (keyIsDown('d')) {
-    if (!sounds[2].isPlaying()) {
-      sounds[2].play();
-    }
-  } else if (keyIsDown('f')) {
-    if (!sounds[3].isPlaying()) {
-      sounds[3].play();
-    }
+  if (currentSound) {
+    currentSound.stop();
   }
+
+  currentSound = newSound;
+  activeKey = letter;
+
+  currentSound.play();
 }
