@@ -59,7 +59,29 @@ function keyPressed() {
 
     return false;
   }
+}
+function drawKey(letter, name, x, keyColor) {
 
+  if (activeKey === letter && currentSound &&
+      currentSound.isPlaying()) {
+    fill(keyColor);
+  } else {
+    fill(65);
+  }
+
+  noStroke();
+  rect(x, 110, 90, 70, 10);
+
+  fill(255);
+  textSize(28);
+  text(letter, x + 45, 145);
+
+  textSize(13);
+  text(name, x + 45, 199);
+}
+
+function keyPressed() {
+  userStartAudio();
  
   if (key === 'a' || key === 'A') {
     playSound(scratch, 'a');

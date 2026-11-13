@@ -12,3 +12,4 @@ sound files, sound processing
 Assignment 9: So you want to be a VJ (Due Nov 12)
 Create a keyboard that plays sounds (can be sound samples or synthesized sounds) and use it to record your own "composition" with your phone or computer. Include the sound file in your repo as a Google Drive link.
 
+https://drive.google.com/file/d/1BuLqWa1v8qOoj4gn3GNvvOPp8g1gegsp/view?usp=drive_link
